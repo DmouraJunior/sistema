@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <title>Sistema Oficial de Consulta</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0b3d91;
+}
+
+header {
+  background: #002776;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.logo {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.logo img {
+  width: 120px;
+}
+
+.container {
+  background: white;
+  max-width: 350px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+h3 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  border: none;
+  background: #002776;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #001f5c;
+}
+
+pre {
+  background: #f0f0f0;
+  padding: 10px;
+  border-radius: 5px;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+Sistema Oficial de Consulta de Servidores
+</header>
+
+<div class="logo">
+  <img src="logo.png">
+</div>
+
+<div class="container" id="loginBox">
+
+<h3>Acesso ao Sistema</h3>
+
+<input type="text" id="user" placeholder="Usuário">
+<input type="password" id="pass" placeholder="Senha">
+
+<button onclick="login()">Entrar</button>
+
+<p id="erro" style="color:red; text-align:center;"></p>
+
+</div>
+
+<div class="container" id="consultaBox" style="display:none;">
+
+<h3>Consulta de Funcionário</h3>
+
+<input type="text" id="nome" placeholder="Digite o nome">
+<button onclick="buscar()">Buscar</button>
+
+<button onclick="sair()">Sair</button>
+
+<pre id="resultado"></pre>
+
+</div>
+
+<script>
+
+function login() {
+  let u = document.getElementById("user").value;
+  let p = document.getElementById("pass").value;
+
+  if (u === "admin" && p === "1234") {
+    document.getElementById("loginBox").style.display = "none";
+    document.getElementById("consultaBox").style.display = "block";
+    document.getElementById("erro").innerText = "";
+  } else {
+    document.getElementById("erro").innerText = "Usuário ou senha inválidos";
+  }
+}
+
+function sair() {
+  document.getElementById("consultaBox").style.display = "none";
+  document.getElementById("loginBox").style.display = "block";
+
+  document.getElementById("user").value = "";
+  document.getElementById("pass").value = "";
+  document.getElementById("nome").value = "";
+  document.getElementById("resultado").innerText = "";
+}
+
+function buscar() {
+  let nome = document.getElementById("nome").value;
+
+  fetch("https://juniorautomacao.app.n8n.cloud/webhook/consulta-funcionario?nome=" + nome)
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("resultado").innerText =
+        "Nome: " + data.NOME + "\n" +
+        "Setor: " + data.SETOR + "\n" +
+        "Cargo: " + data.CARGO;
+    })
+    .catch(() => {
+      document.getElementById("resultado").innerText = "Funcionário não encontrado";
+    });
+}
+
+</script>
+
+</body>
+</html>
+
+
