@@ -1,23 +1,31 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
-  <title>Sistema Oficial de Consulta</title>
+<title>Sistema Oficial de Consulta</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #0b3d91;
+  background: linear-gradient(180deg, #0b3d91, #002776);
 }
+
+/* Cabeçalho */
 
 header {
   background: #002776;
   color: white;
   text-align: center;
-  padding: 15px;
-  font-size: 18px;
+  padding: 18px;
+  font-size: 20px;
   font-weight: bold;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.3);
 }
+
+/* Logo */
 
 .logo {
   text-align: center;
@@ -25,54 +33,69 @@ header {
 }
 
 .logo img {
-  width: 120px;
+  width: 140px;
+  display: block;
+  margin: 10px auto;
 }
+
+/* Caixa principal */
 
 .container {
   background: white;
-  max-width: 350px;
+  max-width: 380px;
   margin: 20px auto;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  padding: 22px;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
 }
+
+/* Títulos */
 
 h3 {
   text-align: center;
   margin-bottom: 15px;
 }
 
+/* Campos */
+
 input {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   margin: 6px 0;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 6px;
+  font-size: 14px;
 }
+
+/* Botões */
 
 button {
   width: 100%;
-  padding: 10px;
-  margin-top: 8px;
+  padding: 12px;
+  margin-top: 10px;
   border: none;
   background: #002776;
   color: white;
   font-weight: bold;
-  border-radius: 5px;
+  border-radius: 6px;
   cursor: pointer;
+  font-size: 15px;
 }
 
 button:hover {
   background: #001f5c;
 }
 
-pre {
-  background: #f0f0f0;
-  padding: 10px;
-  border-radius: 5px;
-}
-</style>
+/* Resultado */
 
+pre {
+  background: #f2f2f2;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+</style>
 </head>
 
 <body>
@@ -84,6 +107,8 @@ Sistema Oficial de Consulta de Servidores
 <div class="logo">
   <img src="logo.png">
 </div>
+
+<!-- LOGIN -->
 
 <div class="container" id="loginBox">
 
@@ -98,11 +123,14 @@ Sistema Oficial de Consulta de Servidores
 
 </div>
 
+<!-- CONSULTA -->
+
 <div class="container" id="consultaBox" style="display:none;">
 
 <h3>Consulta de Funcionário</h3>
 
 <input type="text" id="nome" placeholder="Digite o nome">
+
 <button onclick="buscar()">Buscar</button>
 
 <button onclick="sair()">Sair</button>
@@ -156,6 +184,9 @@ function buscar() {
 
 </body>
 </html>
+
+</html>
+
 
 
 
